@@ -1,0 +1,19 @@
+{
+  "name": "load-fb-sdk",
+  "version": "0.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/micnews/load-fb-sdk.git"
+  },
+  "author": "mic.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/micnews/load-fb-sdk/issues"
+  },
+  "homepage": "https://github.com/micnews/load-fb-sdk#readme",
+  "description": "Small wrapper to load the Facebook JavaScript SDK."
+}
