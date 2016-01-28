@@ -15,7 +15,10 @@ var fbInitOpts = {
 
 // This must be set before running loadFbSdk() the first time.
 window.__LOAD_FB_SDK = fbInitOpts;
-loadFbSdk(function (FB) {
+loadFbSdk(function (err, FB) {
+  if (err) {
+    return console.log(err);
+  }
   // Do stuff with the Facbeook JS SDK.
 });
 
