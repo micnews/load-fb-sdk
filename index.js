@@ -6,7 +6,7 @@ var callbacks = [];
 module.exports = function (callback) {
   if (_FB) {
     return process.nextTick(function () {
-      callback(_FB);
+      callback(null, _FB);
     });
   }
 
@@ -15,11 +15,16 @@ module.exports = function (callback) {
   var initOpts = window.__LOAD_FB_SDK;
 
   window.fbAsyncInit = function() {
+    try {
+      window.FB.init(initOpts);
+    } catch (e) {
+      return callback(e);
+    }
+
     _FB = window.FB;
-    _FB.init(initOpts);
 
     callbacks.forEach(function (_callback) {
-      _callback(_FB);
+      _callback(null, _FB);
     });
   };
 
