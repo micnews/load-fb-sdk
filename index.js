@@ -4,6 +4,8 @@ var _FB;
 var callbacks = [];
 
 module.exports = function (callback) {
+  _FB = _FB || window.FB;
+
   if (_FB) {
     return process.nextTick(function () {
       callback(null, _FB);
