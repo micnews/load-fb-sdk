@@ -14,7 +14,15 @@ module.exports = function (callback) {
 
   callbacks.push(callback);
 
+  // Avoid resetting fbAsyncInit multiple times
+  if (callbacks.length > 1) {
+    return;
+  }
+
   var initOpts = window.__LOAD_FB_SDK;
+  var prevAsyncInit = typeof window.fbAsyncInit === 'function'
+    ? window.fbAsyncInit
+    : null;
 
   window.fbAsyncInit = function() {
     try {
@@ -28,6 +36,11 @@ module.exports = function (callback) {
     callbacks.forEach(function (_callback) {
       _callback(null, _FB);
     });
+
+    // Call previous fbAsyncInit in the new stack
+    if (prevAsyncInit) {
+      setTimeout(prevAsyncInit, 1);
+    }
   };
 
  (function(d, s, id){
